@@ -1,50 +1,62 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-class CircleButton extends React.Component{
-    render() {
-        // styleをpropsで上書きできるように。
-        const { style, color } = this.props;
-        
-        let bgColor = '#E31676';
-        let textColor = '#fff';
+/**
+ * 
+ * CircleButton
+ * 
+ * 使用方法
+ * chirdrenにFontAwesomeのアイコンを挿入する。
+ * 
+ * [ForExample]
+ * 
+ * <CircleButton color='white' style={styles.editButton}>
+ *       <Icon name="pencil" size={20}/>
+ * </CircleButton>
+ * 
+ */
+class CircleButton extends React.Component {
+	render() {
+		// styleをpropsで上書きできるように。
+		const { style, color } = this.props;
 
-        if (color === 'white') {
-            bgColor = '#fff';
-            textColor = '#E31676';
-        }
+		let bgColor = '#E31676';
+		let textColor = '#fff';
 
-        return (
-            // style複数もつ書き方
-            <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-                <Text style={[styles.circleButtonTitle, {color:textColor}]}>{this.props.children}</Text>
-            </View>
-        );
-    }
+		if (color === 'white') {
+			bgColor = '#fff';
+			textColor = '#E31676';
+		}
+
+		return (
+			// style複数もつ書き方
+			<View style={[ styles.circleButton, style, { backgroundColor: bgColor } ]}>
+				<Text style={[ styles.circleButtonTitle, { color: textColor } ]}>{this.props.children}</Text>
+			</View>
+		);
+	}
 }
 
-
 const styles = StyleSheet.create({
-    circleButton: {
-        position: 'absolute',
-        bottom: 32,
-        right: 32,
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        justifyContent: 'center',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        zIndex:10,
-    },
-    circleButtonTitle: {
-        fontSize: 32,
-        color:'#fff'
-    }
-})
-
+	circleButton: {
+		position: 'absolute',
+		bottom: 32,
+		right: 32,
+		width: 48,
+		height: 48,
+		borderRadius: 24,
+		justifyContent: 'center',
+		alignItems: 'center',
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.2,
+		shadowRadius: 3,
+		zIndex: 10
+	},
+	circleButtonTitle: {
+		fontSize: 32,
+		color: '#fff'
+	}
+});
 
 export default CircleButton;

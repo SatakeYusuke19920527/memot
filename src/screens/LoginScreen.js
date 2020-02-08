@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
 
 export class LoginScreen extends Component {
 	render() {
+		const {navigation} = this.props;
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>ログイン</Text>
 				<TextInput style={styles.input} value="Email Adress" />
 				<TextInput style={styles.input} value="password" />
-				<TouchableHighlight
-					underlayColor="#C70F66"
-					style={styles.button}
-					title="送信"
-					onPress={() => {}}
-					activeOpacity
-				>
+				<TouchableHighlight underlayColor="#C70F66" style={styles.button} title="送信" onPress={() => {}}>
 					<Text style={styles.buttonTitle}>ログインする</Text>
 				</TouchableHighlight>
+				<Button
+					title="Go to Details"
+					onPress={() => navigation.navigate('SignupScreen')}
+				/>
 			</View>
 		);
 	}
