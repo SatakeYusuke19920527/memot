@@ -27,9 +27,22 @@ export class LoginScreen extends Component {
 		}
 	}
 
-	handleSubmit = () => {
-		console.log("submit");
-		this.props.navigation.navigate('MemoListScreen')
+	handleSubmit = (email, password) => {
+
+		firebase.auth().signInWithEmailAndPassword(email, password)
+		.then((usr) => {
+			// Success Login
+			console.log(usr)
+			this.props.navigation.navigate('MemoListScreen');
+		})
+		.catch(function (error) {
+  			// Handle Errors here.
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			console.log(errorCode);
+			console.log(errorMessage);
+			alert("ログイン失敗")
+		});
 	}
 
 	render() {
@@ -58,11 +71,12 @@ export class LoginScreen extends Component {
 					underlayColor="#C70F66"
 					style={styles.button}
 					title="送信"
-					onPress={() => this.handleSubmit()}
+					onPress={() => this.handleSubmit(this.state.email, this.state.password)}
 				>
 					<Text style={styles.buttonTitle}>ログインする</Text>
 				</TouchableHighlight>
 				<Button
+					style={styles.registerButton}
 					title="メンバー登録"
 					onPress={() => navigation.navigate('SignupScreen')}
 				/>
@@ -100,12 +114,14 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		alignItems: 'center',
 		justifyContent: 'center',
-		alignSelf: 'center'
+		alignSelf: 'center',
+		marginTop:20,
+		marginBottom:20,
 	},
 	buttonTitle: {
 		color: 'white',
 		fontSize: 18
-	}
+	},
 });
 
 export default LoginScreen;
