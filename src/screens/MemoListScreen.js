@@ -8,8 +8,13 @@ export class MemoListScreen extends React.Component {
     render() {
 		return (
 			<View style={styles.container}>
-                <MemoList />
-                <CircleButton>
+                <MemoList
+                    navigation={this.props.navigation}
+                />
+                <CircleButton
+                    navigation={this.props.navigation}
+                    screenName={'MemoEditScreen'}
+                >
 					<Icon name="plus" size={20} />
 				</CircleButton>
 			</View>
@@ -20,7 +25,8 @@ export class MemoListScreen extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		width: '100%'
+        width: '100%',
+        backgroundColor: '#FFFDF6'
 	}
 });
 

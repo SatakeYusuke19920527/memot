@@ -8,7 +8,10 @@ export class MemoEditScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<TextInput style={styles.memoEditInput} multiline={true} />
-				<CircleButton>
+				<CircleButton
+					navigation={this.props.navigation}
+                    screenName={'MemoDetailScreen'}
+				>
 					<Icon name="check" size={20} />
 				</CircleButton>
 			</View>

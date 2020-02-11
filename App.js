@@ -13,12 +13,46 @@ const Stack = createStackNavigator();
 function App() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="SignupScreen" component={SignupScreen} />
-				<Stack.Screen name="MemoListScreen" component={MemoListScreen} />
-				<Stack.Screen name="MemoDetailScreen" component={MemoDetailScreen} />
-				<Stack.Screen name="MemoEditScreen" component={MemoEditScreen} />
+      <Stack.Navigator
+        initialRouteName="LoginScreen"
+        headerMode="screen"
+        screenOptions={{
+          headerTintColor: '#fff',
+          headerStyle: { backgroundColor: '#265366' },
+          headerBackTitleVisible:false
+        }}
+      >
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{
+            title: 'Memot',
+          }}
+        />
+        <Stack.Screen
+          name="SignupScreen"
+          component={SignupScreen}
+          options={{
+            title: 'Memot',
+          }}
+        />
+        <Stack.Screen
+          name="MemoListScreen"
+          component={MemoListScreen}
+          options={{
+            title: 'Memot',
+          }}
+        />
+        <Stack.Screen
+          name="MemoDetailScreen"
+          component={MemoDetailScreen}
+          
+        />
+        <Stack.Screen
+          name="MemoEditScreen"
+          component={MemoEditScreen}
+          
+        />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

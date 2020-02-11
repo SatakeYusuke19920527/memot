@@ -19,7 +19,12 @@ class MemoDetailScreen extends Component {
                     講座のアイディアです。
                 </Text>
             </View>
-                <CircleButton color='white' style={styles.editButton}>
+                <CircleButton
+                    color='white'
+                    style={styles.editButton}
+                    navigation={this.props.navigation}
+                    screenName={'MemoEditScreen'}
+                >
                     <Icon name="pencil" size={20}/>
                 </CircleButton>
             </View>

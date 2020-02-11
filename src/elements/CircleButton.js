@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
 /**
  * 
@@ -30,9 +30,13 @@ class CircleButton extends React.Component {
 
 		return (
 			// style複数もつ書き方
-			<View style={[ styles.circleButton, style, { backgroundColor: bgColor } ]}>
-				<Text style={[ styles.circleButtonTitle, { color: textColor } ]}>{this.props.children}</Text>
-			</View>
+			<TouchableHighlight
+				onPress={()=> this.props.navigation.navigate(this.props.screenName)}
+				style={[styles.circleButton, style, { backgroundColor: bgColor }]}
+				underlayColor="transparent"
+			>
+				<Text style={[styles.circleButtonTitle, { color: textColor }]}>{this.props.children}</Text>
+			</TouchableHighlight>
 		);
 	}
 }
