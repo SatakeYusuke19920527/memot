@@ -1,22 +1,6 @@
-import firebase from 'firebase';
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native';
-import ENV from "../../env.json";
-
-
-// Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: ENV.FIREBASE_API_KEY,
-    authDomain: ENV.FIREBASE_AUTH_DOMAIN,
-    databaseURL: ENV.FIREBASE_DB_URL,
-    projectId: ENV.FIREBASE_PRJ_ID,
-    storageBucket: ENV.FIREBASE_STORAGE,
-    messagingSenderId: ENV.FIREBASE_SENDER_ID,
-    appId: ENV.FIREBASE_APP_ID,
-    measurementId: ENV.FIREBASE_MM_ID
-  };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+import firebase from '../elements/firebase';
 
 export class LoginScreen extends Component {
 	constructor(props) {
@@ -28,20 +12,16 @@ export class LoginScreen extends Component {
 	}
 
 	handleSubmit = (email, password) => {
-
 		firebase.auth().signInWithEmailAndPassword(email, password)
 		.then((usr) => {
 			// Success Login
-			console.log(usr)
-			this.props.navigation.navigate('MemoListScreen');
+			this.props.navigation.navigate(`MemoListScreen`);
 		})
 		.catch(function (error) {
   			// Handle Errors here.
 			var errorCode = error.code;
 			var errorMessage = error.message;
-			console.log(errorCode);
-			console.log(errorMessage);
-			alert("ログイン失敗")
+			alert("ログイン失敗");
 		});
 	}
 

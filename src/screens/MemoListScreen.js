@@ -3,8 +3,10 @@ import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
+require('firebase/firestore');
 
 export class MemoListScreen extends React.Component {
+    
     render() {
 		return (
 			<View style={styles.container}>
@@ -16,7 +18,7 @@ export class MemoListScreen extends React.Component {
                     screenName={'MemoEditScreen'}
                 >
 					<Icon name="plus" size={20} />
-				</CircleButton>
+                </CircleButton>
 			</View>
 		);
 	}

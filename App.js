@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import 'react-native-gesture-handler';
 import LoginScreen from './src/screens/LoginScreen';
+import MemoCreateScreen from './src/screens/MemoCreateScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import MemoEditScreen from './src/screens/MemoEditScreen';
 import MemoListScreen from './src/screens/MemoListScreen';
@@ -14,7 +15,7 @@ function App() {
 	return (
 		<NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LoginScreen"
+        initialRouteName="MemoCreateScreen"
         headerMode="screen"
         screenOptions={{
           headerTintColor: '#fff',
@@ -51,6 +52,11 @@ function App() {
         <Stack.Screen
           name="MemoEditScreen"
           component={MemoEditScreen}
+          
+        />
+        <Stack.Screen
+          name="MemoCreateScreen"
+          component={MemoCreateScreen}
           
         />
 			</Stack.Navigator>

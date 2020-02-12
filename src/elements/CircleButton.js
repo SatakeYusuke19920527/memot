@@ -1,12 +1,15 @@
+import firebase from 'firebase';
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
-
+require('firebase/firestore');
 /**
  * 
  * CircleButton
  * 
  * 使用方法
  * chirdrenにFontAwesomeのアイコンを挿入する。
+ * 行きたい画面をscreenNameで指定
+ * DBにアクセスできる要素
  * 
  * [ForExample]
  * 
@@ -16,6 +19,50 @@ import { StyleSheet, Text, TouchableHighlight } from 'react-native';
  * 
  */
 class CircleButton extends React.Component {
+
+	pressAction = () => {
+
+		console.log(this.props.mode + "確認用");
+
+		const body = this.props.body;
+
+		if (this.props.mode === 'save') {
+			firebase.auth().onAuthStateChanged(function(user) {
+				// User is signed in.
+				const db = firebase.firestore();
+				const uid = user.uid;
+				db.collection(`users/${uid}/memos`).add({
+					body: body,
+					createOn: new Date(),
+				})
+				.then(function (docRef) {
+					console.log("Document written with ID: ", docRef.id);
+				})
+				.catch(function (error) {
+					console.error("Error adding document: ", error);
+				});
+		});
+		}
+
+		// firebase.auth().onAuthStateChanged(function(user) {
+		// 		// User is signed in.
+		// 		const db = firebase.firestore();
+		// 		const uid = user.uid;
+		// 		db.collection(`users/${uid}/memos`).add({
+		// 			body: "iketatatatattataatatat",
+		// 			createOn: "2020-2-11",
+		// 		})
+		// 		.then(function (docRef) {
+		// 			console.log("Document written with ID: ", docRef.id);
+		// 		})
+		// 		.catch(function (error) {
+		// 			console.error("Error adding document: ", error);
+		// 		});
+		// });
+
+		this.props.navigation.push(this.props.screenName);
+	}
+
 	render() {
 		// styleをpropsで上書きできるように。
 		const { style, color } = this.props;
@@ -31,7 +78,7 @@ class CircleButton extends React.Component {
 		return (
 			// style複数もつ書き方
 			<TouchableHighlight
-				onPress={()=> this.props.navigation.navigate(this.props.screenName)}
+				onPress={()=> this.pressAction()}
 				style={[styles.circleButton, style, { backgroundColor: bgColor }]}
 				underlayColor="transparent"
 			>
