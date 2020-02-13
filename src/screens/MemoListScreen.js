@@ -22,8 +22,9 @@ export class MemoListScreen extends React.Component {
             .get()
             .then((querySnapshot) => {
                 const memoList = [];
-                    querySnapshot.forEach((doc) => {
-                        memoList.push(doc.data())
+                querySnapshot.forEach((doc) => {
+                        // keyを配列に付け加える...
+                        memoList.push({...doc.data(),key:doc.id})
                     });
                 this.setState({ memoList });
             })

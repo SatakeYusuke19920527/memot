@@ -1,28 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 class MemoList extends React.Component{
-
-    renderMemo(memo) {
+    
+    
+    renderMemo({item}) {
+        console.log(item);
         return (
             <TouchableHighlight onPress={() => this.props.navigation.navigate('MemoDetailScreen')}>
                     <View style={styles.memoListItem}>
-                        <Text style={styles.memoTitle}>{memo.body}</Text>
-                    <Text style={styles.Date}>あああああ</Text>
+                        <Text style={styles.memoTitle}>{item.body}</Text>
+                    <Text style={styles.Date}>{item.createOn.seconds}</Text>
                     </View>
             </TouchableHighlight>
         );
     }
 
     render() {
-        const list = [];
-        this.props.memoList.map((memo) => {
-            list.push(this.renderMemo(memo));
-        })
         return (    
-            <View style={styles.memoList}>
-                {list}              
+            <View
+                style={styles.memoList}
+            >
+                <FlatList
+                    data={this.props.memoList}
+                    renderItem={this.renderMemo.bind(this)}
+                />
             </View>
         );
     }
