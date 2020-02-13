@@ -21,11 +21,8 @@ require('firebase/firestore');
 class CircleButton extends React.Component {
 
 	pressAction = () => {
-
-		console.log(this.props.mode + "確認用");
-
+		// 新規入力した本文の内容
 		const body = this.props.body;
-
 		if (this.props.mode === 'save') {
 			firebase.auth().onAuthStateChanged(function(user) {
 				// User is signed in.
@@ -42,24 +39,23 @@ class CircleButton extends React.Component {
 					console.error("Error adding document: ", error);
 				});
 		});
+		} else {
+			firebase.auth().onAuthStateChanged(function(user) {
+				// User is signed in.
+				const db = firebase.firestore();
+				const uid = user.uid;
+				db.collection(`users/${uid}/memos`).add({
+					body: "elseの方に来てるよ",
+					createOn: new Date(),
+				})
+				.then(function (docRef) {
+					console.log("Document written with ID: ", docRef.id);
+				})
+				.catch(function (error) {
+					console.error("Error adding document: ", error);
+				});
+		});
 		}
-
-		// firebase.auth().onAuthStateChanged(function(user) {
-		// 		// User is signed in.
-		// 		const db = firebase.firestore();
-		// 		const uid = user.uid;
-		// 		db.collection(`users/${uid}/memos`).add({
-		// 			body: "iketatatatattataatatat",
-		// 			createOn: "2020-2-11",
-		// 		})
-		// 		.then(function (docRef) {
-		// 			console.log("Document written with ID: ", docRef.id);
-		// 		})
-		// 		.catch(function (error) {
-		// 			console.error("Error adding document: ", error);
-		// 		});
-		// });
-
 		this.props.navigation.push(this.props.screenName);
 	}
 

@@ -15,7 +15,7 @@ function App() {
 	return (
 		<NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MemoCreateScreen"
+        initialRouteName="LoginScreen"
         headerMode="screen"
         screenOptions={{
           headerTintColor: '#fff',
