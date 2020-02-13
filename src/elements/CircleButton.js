@@ -45,7 +45,7 @@ class CircleButton extends React.Component {
 				const db = firebase.firestore();
 				const uid = user.uid;
 				db.collection(`users/${uid}/memos`).add({
-					body: "elseの方に来てるよ",
+					body: "elseの方に来てるよ3",
 					createOn: new Date(),
 				})
 				.then(function (docRef) {

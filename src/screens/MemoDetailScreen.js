@@ -4,19 +4,34 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CircleButton from '../elements/CircleButton';
 
 class MemoDetailScreen extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            title: '',
+            date:'',
+        }
+    }
+
+    UNSAFE_componentWillMount = () => {
+        const params = this.props.route.params.memo;
+        this.setState({
+            title: params.body,
+            date: params.createOn.toString()
+        })
+    }
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.memoHeader}>
                     <View>
-                        <Text style={styles.memoHeaderTitle}>講座のアイディア</Text>
-                        <Text style={styles.memoHeaderDate}>2020/2/6</Text>
+                        <Text style={styles.memoHeaderTitle}>{this.state.title}</Text>
+                        <Text style={styles.memoHeaderDate}>{this.state.date}</Text>
                     </View>
             </View>
             <View style={styles.memoContents}>
                 <Text>
-                    講座のアイディアです。
+                    {this.state.title}
                 </Text>
             </View>
                 <CircleButton
